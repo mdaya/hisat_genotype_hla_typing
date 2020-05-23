@@ -2,27 +2,18 @@
 
 #Input parameters
 nr_threads=$1
-#fq_1=$2 - set below 
-#fq_2=$3 - set below
+fq_1=$2
+fq_2=$3
 sample_id=`basename $fq_1 | cut -f1 -d"_"` 
 #Create soft links to reference files required by HISAT-genotype to be in the current
 #working directory
 shift
+shift
+shift
 for file in "$@"
 do
-  if [[ $file != *.fq.gz ]]  
-  then
-    target_file=`basename $file`
-    ln -s $file $target_file
-  fi
-  if [[ $file == *.1.fq.gz ]]  
-  then
-    fq_1=$file
-  fi
-  if [[ $file == *.2.fq.gz ]]
-  then
-    fq_2=$file
-  fi
+  target_file=`basename $file`
+  ln -s $file $target_file
 done
 
 #Output parameters
