@@ -4,7 +4,7 @@
 nr_threads=$1
 fq_1=$2
 fq_2=$3
-sample_id=`basename $fq_1 | cut -f1 -d"_"` 
+sample_id=`basename $fq_1 | cut -c1-17` 
 #Create soft links to reference files required by HISAT-genotype to be in the current
 #working directory
 shift
