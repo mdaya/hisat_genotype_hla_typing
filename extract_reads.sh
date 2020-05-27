@@ -24,7 +24,7 @@ fq_2=${sample_id}_extract.bam.2.fq.gz
    -bo ${sample_id}_unmapped.bam $cram_file_name 
 
 #Extract supplementary reads to a temporary bam file
-/usr/bin/samtools view -f 800 \
+/usr/bin/samtools view -f 0x800 \
    -@ $nr_threads \
    -T $ref_fasta_file_name -t ${ref_fasta_file_name}.fai \
    -bo ${sample_id}_suppl.bam $cram_file_name 
