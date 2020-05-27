@@ -23,12 +23,18 @@ fq_2=${sample_id}_extract.bam.2.fq.gz
    -T $ref_fasta_file_name -t ${ref_fasta_file_name}.fai \
    -bo ${sample_id}_unmapped.bam $cram_file_name 
 
+#Extract supplementary reads to a temporary bam file
+/usr/bin/samtools view -F 800 \
+   -@ $nr_threads \
+   -T $ref_fasta_file_name -t ${ref_fasta_file_name}.fai \
+   -bo ${sample_id}_suppl.bam $cram_file_name 
+
 #Merge the 2 temporary bam files
 /usr/bin/samtools merge  -@ $nr_threads ${sample_id}_extract.bam \
-   ${sample_id}_MHC.bam ${sample_id}_unmapped.bam 
+   ${sample_id}_MHC.bam ${sample_id}_unmapped.bam ${sample_id}_suppl.bam 
 
 #Extract reads from the merged bam file to fastq zipped files
-java -Xmx14G -jar /home/biodocker/picard/picard.jar SamToFastq \
+java -Xmx10G -jar /home/biodocker/picard/picard.jar SamToFastq \
    I=${sample_id}_extract.bam \
    FASTQ=$fq_1 SECOND_END_FASTQ=$fq_2 \
    NON_PF=true RE_REVERSE=true VALIDATION_STRINGENCY=LENIENT
