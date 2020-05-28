@@ -127,6 +127,4 @@ foreach my $refID (@BAM_idx_contigOrder)
 
 die "No contigs for extraction specified in $compatible_reference_file?" unless(scalar(@refIDs_for_extraction));
 
-open(FH, '>', "contigs.txt") or die $!;
-print FH join(' ', @refIDs_for_extraction);
-close(FH);
+print join(' ', @refIDs_for_extraction);
