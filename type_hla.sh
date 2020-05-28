@@ -29,7 +29,7 @@ hisatgenotype_toolkit extract-reads --base hla -1 $fq_1 -2 $fq_2 --threads $nr_t
 #Type HLA
 hisatgenotype_toolkit locus -x genotype_genome \
    --base hla \
-   --locus-list A,B,C,DRB1,DQA1,DQB1 \
+   --locus-list A,B,C,DRB1,DQA1,DQB1,DPA1,DPB1,E,F,G \
    -1 ${sample_id}_extract.bam.1.fq.gz-hla-extracted-1.fq.gz \
    -2 ${sample_id}_extract.bam.1.fq.gz-hla-extracted-2.fq.gz \
    --threads $nr_threads
