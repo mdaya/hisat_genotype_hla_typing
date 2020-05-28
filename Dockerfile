@@ -26,11 +26,12 @@ RUN git clone https://github.com/DaehwanKimLab/hisat-genotype /home/biodocker/hi
 RUN mkdir /home/biodocker/hisat_genotype_run
 COPY extract_reads.sh /home/biodocker/hisat_genotype_run
 COPY type_hla.sh /home/biodocker/hisat_genotype_run
-COPY type_hla_save_extracts.sh /home/biodocker/hisat_genotype_run
+COPY get_hla_contigs.pl /home/biodocker/hisat_genotype_run
+RUN mkdir /home/biodocker/hisat_genotype_run/known_references
+COPY known_references/*.txt /home/biodocker/hisat_genotype_run/known_references/
 USER root
 RUN chmod a+x /home/biodocker/hisat_genotype_run/extract_reads.sh
 RUN chmod a+x /home/biodocker/hisat_genotype_run/type_hla.sh
-RUN chmod a+x /home/biodocker/hisat_genotype_run/type_hla_save_extracts.sh
 USER biodocker
 
 CMD ["/bin/bash"]
